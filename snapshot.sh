@@ -1,0 +1,1 @@
+ffmpeg -y -i "$1" -ss 1 -frames:v 1 $2
