@@ -12,3 +12,4 @@ sh rtsp2http.sh rtsp://admin:admin@192.168.10.23:554/video1 http://127.0.0.1:808
 ```shell
 node websocket-relay.js 123456 8082 8084 8087
 ```
+####[docker rtmp nginx ffmpeg](https://github.com/alfg/docker-nginx-rtmp)
