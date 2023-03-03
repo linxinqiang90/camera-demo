@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>前端播放m3u8格式视频</title>
+    <!--https://www.bootcdn.cn/video.js/-->
+    <link href="https://cdn.bootcss.com/video.js/7.6.5/alt/video-js-cdn.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/video.js/6.6.2/video.js"></script>
+    <script src="ezuikit.js"></script>
+    <!--https://www.bootcdn.cn/videojs-contrib-hls/-->
+    <script src="https://cdn.bootcss.com/videojs-contrib-hls/5.15.0/videojs-contrib-hls.min.js"></script>
+</head>
+<div id="root">
+    <video id="my_video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="400">
+</video>
+</div>
+<hr>
+<button onclick="playVideo(0)">play 0 (mp4)</button>
+<button onclick="playVideo(1)">play 1 (mp4)</button>
+<button onclick="playVideo(2)">play 2 (youtube)</button>
+<hr>
+<div id="info"></div>
+</body>
+<style>
+    div {
+        height: 75%;
+        width: 50%;
+        position: relative;
+        top: 0%;
+        left: 0%;
+        margin: 3px auto;
+    }
+</style>
+<script>
+    var vids = [{
+        type: "application/x-mpegURL",
+        src: "ezopen://open.ys7.com/736914355/1.live"
+    }, {
+        type: "application/x-mpegURL",
+        src: "http://192.168.212.147:8080/live/test.m3u8"
+    }, {
+        type: "application/x-mpegURL",
+        src: "http://192.168.212.147:8080/live/test1.m3u8"
+    }];
+    var vPlayer;
+    playVideo = function(n) {
+        $("#root").empty();
+
+        if (n != 0) {
+            var ele = $('<video id="my_video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="400"></video>')
+            $("#root").append(ele)
+            if (vPlayer) {
+                vPlayer.dispose();
+            }
+            vPlayer = videojs('my_video', {
+                autoplay: false,
+                sources: []
+            });
+            vPlayer.src(vids[n]);
+            vPlayer.play();
+        } else {
+            var ele = $('<div id="video-container"></div>');
+            $("#root").append(ele)
+            var player = new EZUIKit.EZUIKitPlayer({
+                id: 'video-container', // 视频容器ID
+                width: 600,
+                height: 400,
+                accessToken: 'at.9g5oc7gfalsdznms1kiy61zqan78idye-2do1j24or4-06sz2y2-tcbwcttdo',
+                url: 'ezopen://open.ys7.com/736914355/1.hd.live'
+            })
+            $("#root").append(ele)
+        }
+
+    }
+</script>
+
+</html>

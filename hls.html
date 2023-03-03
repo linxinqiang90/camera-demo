@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>前端播放m3u8格式视频</title>
+    <!--https://www.bootcdn.cn/video.js/-->
+    <link href="https://cdn.bootcss.com/video.js/7.6.5/alt/video-js-cdn.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/video.js/6.6.2/video.js"></script>
+    <script src="ezuikit.js"></script>
+    <!--https://www.bootcdn.cn/videojs-contrib-hls/-->
+    <script src="https://cdn.bootcss.com/videojs-contrib-hls/5.15.0/videojs-contrib-hls.min.js"></script>
+</head>
+
+<body>
+    <video id="myVideo1" class="video-js vjs-default-skin vjs-big-play-centered" autoplay="true" muted="false" preload="auto" width="800" height="680">    
+                    <source id="source" src="http://192.168.212.147:8080/live/test.m3u8"  type="application/x-mpegURL">
+        </video>
+    <video id="myVideo2" class="video-js vjs-default-skin vjs-big-play-centered" autoplay="true" muted="false" preload="auto" width="800" height="680">    
+            <source id="source" src="ezopen://open.ys7.com/736914355/1.live"  type="application/x-mpegURL">
+</video> // 页面创建video标签
+
+    <video id="myplayer" src="ezopen://open.ys7.com/736914355/1.live" width="400" height="300" poster="[这里可以填入封面图片URL]" [autoplay] controls playsInline webkit-playsinline>
+  </video>
+
+</body>
+<style>
+    div {
+        height: 75%;
+        width: 50%;
+        position: relative;
+        top: 0%;
+        left: 0%;
+        margin: 3px auto;
+    }
+</style>
+<script>
+    // videojs 简单使用  
+    var myVideo1 = videojs('myVideo1', {
+        bigPlayButton: true,
+        textTrackDisplay: false,
+        posterImage: false,
+        errorDisplay: false,
+    })
+    myVideo1.play() // 视频播放
+        // myVideo1.pause() // 视频暂停
+
+    var myVideo2 = videojs('myVideo2', {
+        bigPlayButton: true,
+        textTrackDisplay: false,
+        posterImage: false,
+        errorDisplay: false,
+    })
+    myVideo2.play() // 视频播放
+        // myVideo2.pause() // 视频暂停
+
+    var player = new EZUIKit.EZUIKitPlayer({
+        id: 'video-container', // 视频容器ID
+        width: 600,
+        height: 400,
+        accessToken: 'at.9g5oc7gfalsdznms1kiy61zqan78idye-2do1j24or4-06sz2y2-tcbwcttdo',
+        url: 'ezopen://open.ys7.com/736914355/1.hd.live'
+    })
+</script>
+
+</html>
